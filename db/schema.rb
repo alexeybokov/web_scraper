@@ -44,13 +44,13 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
     t.bigint "district_number"
     t.string "district_name"
     t.bigint "real_eav"
-    t.integer "real_per_pupil"
+    t.bigint "real_per_pupil"
     t.integer "statewide_eavpp_rank"
     t.string "formula_type"
     t.integer "total_tax_rate"
     t.integer "statewide_ttr_rank"
     t.integer "operating_tax_rate"
-    t.integer "statewide_otr_rank"
+    t.bigint "statewide_otr_rank"
   end
 
   create_table "ilern_student_info", force: :cascade do |t|
@@ -75,9 +75,9 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
   create_table "receipts_revenues", force: :cascade do |t|
     t.bigint "district_number"
     t.string "district_name"
-    t.integer "state_amount"
-    t.integer "local_amount"
-    t.integer "federal_amount"
+    t.bigint "state_amount"
+    t.bigint "local_amount"
+    t.bigint "federal_amount"
     t.bigint "total_amount"
     t.string "data_source_url"
     t.string "scrape_dev"

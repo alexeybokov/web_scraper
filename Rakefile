@@ -1,6 +1,9 @@
 require 'active_record_migrations'
+require_relative 'web_scraper.rb'
 require 'mechanize'
 require 'byebug'
+
+include WebScraper
 
 
 ActiveRecordMigrations.load_tasks
@@ -23,12 +26,18 @@ ActiveRecordMigrations.configure do |c|
     agent.page.forms_with(action: '/ILEARN/Content/SearchData')[0].submit
     agent.page.uri
 
+
+    # def regular_helper(value)
+    #   return 0 if value.text.eql?('')
+    #   value.text[/(\d+.*)/].delete(',').to_i
+    # end
+
     links_district = agent.page.links_with(href: /(RCDTSeclected)/ )
-    page = 1
-    per_page = links_district.count
+    # page = 1
+    # per_page = links_district.count
     last_page = agent.page.search('.col-md-offset-4').text[/(\d+)(\d+)/].delete_suffix('12345678910').to_i
 
-    (1..last_page).each do |page|
+    (69..71).each do |page|
       agent.page.links_with(href: /(RCDTSeclected)/).each do |link|
 
         district_link = link.click
@@ -56,6 +65,25 @@ ActiveRecordMigrations.configure do |c|
 
         ActiveRecord::Base.connection.execute(sql)
         puts "Inserting District: #{district_name}"
+
+        district_info = district_link.search('td')
+
+        state_amount = regular_helper(district_info[1])
+        local_amount = district_info[5].text[/(\d+.*)/].delete(',').to_i
+        federal_amount = district_info[9].text[/(\d+.*)/].delete(',').to_i #TODO fix reg exp
+        total_amount = district_info[13].text[/(\d+.*)/].delete(',').to_i
+
+        sql = "SELECT id FROM ilearn_districts WHERE district_number = #{district_number}"
+        ilearn_districts_id = ActiveRecord::Base.connection.execute(sql)[0]['id']
+
+        sql = "INSERT INTO receipts_revenues (district_number, district_name, state_amount, local_amount,
+              federal_amount, total_amount, data_source_url, scrape_dev, ilearn_districts_id)
+
+        VALUES (#{district_number}, '#{district_name}', #{state_amount}, #{local_amount}, #{federal_amount},
+                #{total_amount}, '#{data_source_url}', '#{scrape_dev}', #{ilearn_districts_id});"
+
+        ActiveRecord::Base.connection.execute(sql)
+        puts "Inserting Data to table receipts_revenues: ...................................................."
       end
       agent.get("http://webprod1.isbe.net/ILEARN/Content/SearchData?page=#{page}&amp;RCA=1")
       puts agent.page.uri
