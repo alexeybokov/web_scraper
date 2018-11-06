@@ -1,0 +1,13 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: ilearn
+  username: root
+  password: my_password
+  host: 127.0.0.1
+  port: 3306
+  flags:
+    - -COMPRESS
+    - FOUND_ROWS
+    - MULTI_STATEMENTS
+  secure_auth: false
