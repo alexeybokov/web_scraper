@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'httparty'
-gem 'nokogiri'
+gem 'mechanize'
 gem 'byebug'
-gem 'mysql2'
+gem 'pg'
 gem 'active_record_migrations'
