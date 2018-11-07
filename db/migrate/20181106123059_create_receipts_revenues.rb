@@ -1,7 +1,7 @@
 class CreateReceiptsRevenues < ActiveRecord::Migration[5.2]
   def change
     create_table :receipts_revenues do |t|
-      t.bigint :district_number
+      t.string :district_number
       t.string :district_name
       t.bigint :state_amount
       t.bigint :local_amount

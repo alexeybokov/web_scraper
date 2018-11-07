@@ -1,7 +1,7 @@
 class CreateIlearnStudentInfo < ActiveRecord::Migration[5.2]
   def change
     create_table :ilearn_student_info do |t|
-      t.bigint :district_number
+      t.string :district_number
       t.string :district_name
       t.integer '9-Month Avg. Daily Attendance'
       t.bigint 'Statewide ADA'

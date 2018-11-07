@@ -4,7 +4,7 @@ class Parser
   end
 
   def number
-    format_value(base_info.text[/(\d{5,})/].to_i)
+    format_value(base_info.text[/(\d+).(\w).(\d+)/])
   end
 
   def name
@@ -123,6 +123,26 @@ class Parser
     format_value tax_info(73)
   end
 
+  def instruction_amount
+    format_value expenditures_disbursements_info(17)
+  end
+
+  def general_administration_amount
+    format_value expenditures_disbursements_info(21)
+  end
+
+  def support_services_amount
+    format_value expenditures_disbursements_info(25)
+  end
+
+  def other_amount
+    format_value expenditures_disbursements_info(29)
+  end
+
+  def total_amount_exp
+    format_value expenditures_disbursements_info(33)
+  end
+
   private
   
   def receipts_info(index)
@@ -152,6 +172,10 @@ class Parser
   end
 
   def tax_info(index)
+    district_page.search('td')[index].text[/(\d+.*)/]&.delete(',')&.to_i
+  end
+
+  def expenditures_disbursements_info(index)
     district_page.search('td')[index].text[/(\d+.*)/]&.delete(',')&.to_i
   end
 

@@ -19,7 +19,7 @@ class Scrapper
   end
 
   def run!
-    (1..last_paginate).each do |page|
+    (85..last_paginate).each do |page|
       district_links(agent).each do |link|
 
         parser = Parser.new(link.click)
@@ -29,6 +29,7 @@ class Scrapper
 
         ActiveRecord::Base.connection.execute(SqlFormatter.query_for_ilearn_districts(parser))
         puts "Inserting District: #{parser.name}"
+        puts "Inserting data to table 'ilearn_districts': ..................................................."
 
         ilearn_districts_id = ActiveRecord::Base.connection
           .execute(SqlFormatter.query_for_ilearn_district_id(parser))[0]['id']
@@ -45,7 +46,11 @@ class Scrapper
             .execute(SqlFormatter.query_for_ilearn_tax_information(parser))
         puts "Inserting data to table 'ilearn_tax_information': ............................................."
 
-      end
+        ActiveRecord::Base.connection
+          .execute(SqlFormatter.query_for_ilearn_expenditures_disbursements(parser, ilearn_districts_id))
+        puts "Inserting data to table 'ilearn_expenditures_disbursements': .................................."
+        end
+
       agent.get("http://webprod1.isbe.net/ILEARN/Content/SearchData?page=#{page}&amp;RCA=1")
       puts agent.page.uri
     end

@@ -1,7 +1,7 @@
 class IlearnTaxInformation < ActiveRecord::Migration[5.2]
   def change
     create_table :ilearn_tax_information do |t|
-      t.bigint :district_number
+      t.string :district_number
       t.string :district_name
       t.bigint :real_eav
       t.bigint :real_per_pupil

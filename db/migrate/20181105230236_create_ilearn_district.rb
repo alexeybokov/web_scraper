@@ -1,7 +1,7 @@
 class CreateIlearnDistrict < ActiveRecord::Migration[5.2]
   def change
     create_table :ilearn_districts do |t|
-      t.bigint :district_number
+      t.string :district_number
       t.string :district_name
       t.string :superintendent
       t.string :address

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
   enable_extension "plpgsql"
 
   create_table "ilearn_districts", force: :cascade do |t|
-    t.bigint "district_number"
+    t.string "district_number"
     t.string "district_name"
     t.string "superintendent"
     t.string "address"
@@ -27,13 +27,13 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
   end
 
   create_table "ilearn_expenditures_disbursements", force: :cascade do |t|
-    t.bigint "district_number"
+    t.string "district_number"
     t.string "district_name"
-    t.integer "instruction_amount"
-    t.integer "general_administration_amount"
-    t.integer "suppert_services_amount"
-    t.integer "other_amount"
-    t.integer "total_amount"
+    t.bigint "instruction_amount"
+    t.bigint "general_administration_amount"
+    t.bigint "suppert_services_amount"
+    t.bigint "other_amount"
+    t.bigint "total_amount"
     t.string "data_source_url"
     t.string "scrape_dev"
     t.bigint "ilearn_districts_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
   end
 
   create_table "ilearn_student_info", force: :cascade do |t|
-    t.bigint "district_number"
+    t.string "district_number"
     t.string "district_name"
     t.integer "9-Month Avg. Daily Attendance"
     t.bigint "Statewide ADA"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
   end
 
   create_table "ilearn_tax_information", force: :cascade do |t|
-    t.bigint "district_number"
+    t.string "district_number"
     t.string "district_name"
     t.bigint "real_eav"
     t.bigint "real_per_pupil"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
   end
 
   create_table "receipts_revenues", force: :cascade do |t|
-    t.bigint "district_number"
+    t.string "district_number"
     t.string "district_name"
     t.bigint "state_amount"
     t.bigint "local_amount"
