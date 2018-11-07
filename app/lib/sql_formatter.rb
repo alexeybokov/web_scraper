@@ -81,7 +81,38 @@ class SqlFormatter
           '#{parser.scrape_dev}',
           #{ilearn_districts_id}
         );
+    }
+  end
 
+  def self.query_for_ilearn_tax_information(parser)
+    %{
+      INSERT INTO ilearn_tax_information
+        (
+         district_number,
+         district_name,
+         real_eav,
+         real_per_pupil,
+         statewide_eavpp_rank,
+         formula_type,
+         total_tax_rate,
+         statewide_ttr_rank,
+         operating_tax_rate,
+         statewide_otr_rank
+        )
+
+      VALUES
+        (
+           #{parser.number},
+           '#{parser.name}',
+           #{parser.real_eav},
+           #{parser.real_per_pupil},
+           #{parser.statewide_eavpp_rank},
+           '#{parser.formula_type}',
+           #{parser.total_tax_rate},
+           #{parser.statewide_ttr_rank},
+           #{parser.operating_tax_rate},
+           #{parser.statewide_otr_rank}
+        );
     }
   end
 end

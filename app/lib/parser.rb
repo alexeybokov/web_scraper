@@ -91,6 +91,38 @@ class Parser
     format_value student_info(57)
   end
 
+  def real_eav
+    format_value tax_info(59)
+  end
+
+  def real_per_pupil
+    format_value tax_info(61)
+  end
+
+  def statewide_eavpp_rank
+    format_value tax_info(63)
+  end
+
+  def formula_type
+    format_value district_page.search('td')[65].text[/(.)/]
+  end
+
+  def total_tax_rate
+    format_value tax_info(67)
+  end
+
+  def statewide_ttr_rank
+    format_value tax_info(69)
+  end
+
+  def operating_tax_rate
+    format_value tax_info(71)
+  end
+
+  def statewide_otr_rank
+    format_value tax_info(73)
+  end
+
   private
   
   def receipts_info(index)
@@ -116,6 +148,10 @@ class Parser
   end
 
   def student_info(index)
+    district_page.search('td')[index].text[/(\d+.*)/]&.delete(',')&.to_i
+  end
+
+  def tax_info(index)
     district_page.search('td')[index].text[/(\d+.*)/]&.delete(',')&.to_i
   end
 
