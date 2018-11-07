@@ -53,12 +53,10 @@ class Parser
 
   def daily_attendance_evg
     format_value district_page.search('td')[39].text[/(\d+.*)/]&.to_f
-    # format_value student_info(39)
   end
 
   def statewide_ada
     format_value district_page.search('td')[41].text[/(\d.*)/]&.delete(',').to_f
-    # format_value student_info(41)
   end
 
   def net_operating
@@ -111,7 +109,6 @@ class Parser
 
   def total_tax_rate
     format_value district_page.search('td')[67].text[/(\d+.*)/]&.to_f
-    # format_value tax_info(67)
   end
 
   def statewide_ttr_rank
@@ -120,7 +117,6 @@ class Parser
 
   def operating_tax_rate
     format_value district_page.search('td')[71].text[/(\d+.*)/]&.to_f
-    # format_value tax_info(71)
   end
 
   def statewide_otr_rank

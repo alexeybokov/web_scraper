@@ -2,5 +2,5 @@ source 'https://rubygems.org'
 
 gem 'mechanize'
 gem 'byebug'
-gem 'pg'
+gem 'mysql2'
 gem 'active_record_migrations'

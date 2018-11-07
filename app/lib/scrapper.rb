@@ -32,7 +32,7 @@ class Scrapper
         puts "Inserting data to table 'ilearn_districts': ..................................................."
 
         ilearn_districts_id = ActiveRecord::Base.connection
-          .execute(SqlFormatter.query_for_ilearn_district_id(parser))[0]['id']
+          .execute(SqlFormatter.query_for_ilearn_district_id(parser)).first[0]
 
         ActiveRecord::Base.connection
           .execute(SqlFormatter.query_for_receipts_revenues(parser, ilearn_districts_id))

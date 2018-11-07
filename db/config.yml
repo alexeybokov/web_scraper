@@ -1,9 +1,8 @@
 development:
-  adapter: postgresql
-  encoding: unicode
-  pool: 50
+  adapter: mysql2
+  encoding: utf8
   database: ilearn
-  host: localhost
-  port: 5432
   username: developer
-  password: 'password1'
+  password: Alexey18.
+  host: localhost
+  port: 3306

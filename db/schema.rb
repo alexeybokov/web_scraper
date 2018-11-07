@@ -12,10 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2018_11_06_123059) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "ilearn_districts", force: :cascade do |t|
+  create_table "ilearn_districts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "district_number"
     t.string "district_name"
     t.string "superintendent"
@@ -26,7 +23,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
     t.string "scrape_dev"
   end
 
-  create_table "ilearn_expenditures_disbursements", force: :cascade do |t|
+  create_table "ilearn_expenditures_disbursements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "district_number"
     t.string "district_name"
     t.bigint "instruction_amount"
@@ -40,26 +37,26 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
     t.index ["ilearn_districts_id"], name: "index_ilearn_expenditures_disbursements_on_ilearn_districts_id"
   end
 
-  create_table "ilearn_student_info", force: :cascade do |t|
+  create_table "ilearn_student_info", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "district_number"
     t.string "district_name"
-    t.float "9-Month Avg. Daily Attendance"
-    t.float "Statewide ADA"
-    t.bigint "Net Operating Expanse"
-    t.bigint "Operating Expance Per Pupil (OEPP)"
-    t.bigint "Statewide OEPP Rank"
-    t.bigint "Statewide OEPP"
-    t.bigint "Allowance for Tuition Computation"
-    t.bigint "Per Capita Tuition Charge (PCTC)"
-    t.integer "Statewide PCTC Rank"
-    t.integer "Statewide PCTC"
+    t.float "eigth_month_avg_daily_Attendance"
+    t.float "statewide_ADA"
+    t.bigint "net_perating_xpanse"
+    t.bigint "operating_expance_per_pupil_OEPP"
+    t.bigint "statewide_OEPP_rank"
+    t.bigint "statewide_OEPP"
+    t.bigint "allowance_for_tuition_computation"
+    t.bigint "per_capita_tuition_charge_PCTC"
+    t.integer "statewide_PCTC_rank"
+    t.integer "statewide_PCTC"
     t.string "data_source_url"
     t.string "scrape_dev"
     t.bigint "ilearn_districts_id"
     t.index ["ilearn_districts_id"], name: "index_ilearn_student_info_on_ilearn_districts_id"
   end
 
-  create_table "ilearn_tax_information", force: :cascade do |t|
+  create_table "ilearn_tax_information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "district_number"
     t.string "district_name"
     t.bigint "real_eav"
@@ -72,7 +69,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
     t.bigint "statewide_otr_rank"
   end
 
-  create_table "receipts_revenues", force: :cascade do |t|
+  create_table "receipts_revenues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "district_number"
     t.string "district_name"
     t.bigint "state_amount"
