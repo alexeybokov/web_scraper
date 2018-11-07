@@ -19,7 +19,7 @@ class Scrapper
   end
 
   def run!
-    (85..last_paginate).each do |page|
+    (1..last_paginate).each do |page|
       district_links(agent).each do |link|
 
         parser = Parser.new(link.click)

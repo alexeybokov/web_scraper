@@ -7,9 +7,9 @@ class IlearnTaxInformation < ActiveRecord::Migration[5.2]
       t.bigint :real_per_pupil
       t.integer :statewide_eavpp_rank
       t.string :formula_type
-      t.integer :total_tax_rate
+      t.float :total_tax_rate
       t.integer :statewide_ttr_rank
-      t.integer :operating_tax_rate
+      t.float :operating_tax_rate
       t.bigint :statewide_otr_rank
     end
   end

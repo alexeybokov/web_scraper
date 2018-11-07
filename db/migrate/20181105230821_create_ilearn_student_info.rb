@@ -3,8 +3,8 @@ class CreateIlearnStudentInfo < ActiveRecord::Migration[5.2]
     create_table :ilearn_student_info do |t|
       t.string :district_number
       t.string :district_name
-      t.integer '9-Month Avg. Daily Attendance'
-      t.bigint 'Statewide ADA'
+      t.float '9-Month Avg. Daily Attendance'
+      t.float 'Statewide ADA'
       t.bigint 'Net Operating Expanse'
       t.bigint 'Operating Expance Per Pupil (OEPP)'
       t.bigint 'Statewide OEPP Rank'

@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
   create_table "ilearn_student_info", force: :cascade do |t|
     t.string "district_number"
     t.string "district_name"
-    t.integer "9-Month Avg. Daily Attendance"
-    t.bigint "Statewide ADA"
+    t.float "9-Month Avg. Daily Attendance"
+    t.float "Statewide ADA"
     t.bigint "Net Operating Expanse"
     t.bigint "Operating Expance Per Pupil (OEPP)"
     t.bigint "Statewide OEPP Rank"
@@ -66,9 +66,9 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
     t.bigint "real_per_pupil"
     t.integer "statewide_eavpp_rank"
     t.string "formula_type"
-    t.integer "total_tax_rate"
+    t.float "total_tax_rate"
     t.integer "statewide_ttr_rank"
-    t.integer "operating_tax_rate"
+    t.float "operating_tax_rate"
     t.bigint "statewide_otr_rank"
   end
 
