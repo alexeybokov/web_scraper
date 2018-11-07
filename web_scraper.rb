@@ -1,12 +1,12 @@
-module WebScraper
-  def regular_helper(value)
-    if value.to_s == "$"
-      0
-    else
-      value.text[/(\d+.*)/].delete(',').to_i
-    end
-  end
-end
+# module WebScraper
+#   def regular_helper(value)
+#     if value.to_s == "$"
+#       0
+#     else
+#       value.text[/(\d+.*)/].delete(',').to_i
+#     end
+#   end
+# end
 
 
 # require 'active_record_migrations'

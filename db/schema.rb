@@ -40,6 +40,25 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
     t.index ["ilearn_districts_id"], name: "index_ilearn_expenditures_disbursements_on_ilearn_districts_id"
   end
 
+  create_table "ilearn_student_info", force: :cascade do |t|
+    t.bigint "district_number"
+    t.string "district_name"
+    t.integer "9-Month Avg. Daily Attendance"
+    t.bigint "Statewide ADA"
+    t.bigint "Net Operating Expanse"
+    t.bigint "Operating Expance Per Pupil (OEPP)"
+    t.bigint "Statewide OEPP Rank"
+    t.bigint "Statewide OEPP"
+    t.bigint "Allowance for Tuition Computation"
+    t.bigint "Per Capita Tuition Charge (PCTC)"
+    t.integer "Statewide PCTC Rank"
+    t.integer "Statewide PCTC"
+    t.string "data_source_url"
+    t.string "scrape_dev"
+    t.bigint "ilearn_districts_id"
+    t.index ["ilearn_districts_id"], name: "index_ilearn_student_info_on_ilearn_districts_id"
+  end
+
   create_table "ilearn_tax_information", force: :cascade do |t|
     t.bigint "district_number"
     t.string "district_name"
@@ -51,25 +70,6 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
     t.integer "statewide_ttr_rank"
     t.integer "operating_tax_rate"
     t.bigint "statewide_otr_rank"
-  end
-
-  create_table "ilern_student_info", force: :cascade do |t|
-    t.bigint "district_number"
-    t.string "district_name"
-    t.integer "9-Month Avg. Daily Attendance"
-    t.integer "Statewide ADA"
-    t.integer "Net Operating Expanse"
-    t.integer "Operating Expance Per Pupil (OEPP)"
-    t.integer "Statewide OEPP Rank"
-    t.integer "Statewide OEPP"
-    t.integer "Allowance for Tuition Computation"
-    t.integer "Per Capita Tuition Charge (PCTC)"
-    t.integer "Statewide PCTC Rank"
-    t.integer "Statewide PCTC"
-    t.string "data_source_url"
-    t.string "scrape_dev"
-    t.bigint "ilearn_districts_id"
-    t.index ["ilearn_districts_id"], name: "index_ilern_student_info_on_ilearn_districts_id"
   end
 
   create_table "receipts_revenues", force: :cascade do |t|
@@ -86,6 +86,6 @@ ActiveRecord::Schema.define(version: 2018_11_06_123059) do
   end
 
   add_foreign_key "ilearn_expenditures_disbursements", "ilearn_districts", column: "ilearn_districts_id"
-  add_foreign_key "ilern_student_info", "ilearn_districts", column: "ilearn_districts_id"
+  add_foreign_key "ilearn_student_info", "ilearn_districts", column: "ilearn_districts_id"
   add_foreign_key "receipts_revenues", "ilearn_districts", column: "ilearn_districts_id"
 end

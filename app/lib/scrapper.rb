@@ -10,12 +10,16 @@ class Scrapper
     @last_page ||= agent.page.search('.col-md-offset-4').text[/(\d+)(\d+)/].delete_suffix('12345678910').to_i
   end
 
+  def last_paginate
+    last_page + 1
+  end
+
   def district_links(agent)
     agent.page.links_with(href: /(RCDTSeclected)/)
   end
 
   def run!
-    (1..last_page).each do |page|
+    (84..last_paginate).each do |page|
       district_links(agent).each do |link|
 
         parser = Parser.new(link.click)
@@ -31,7 +35,16 @@ class Scrapper
 
         ActiveRecord::Base.connection
           .execute(SqlFormatter.query_for_receipts_revenues(parser, ilearn_districts_id))
-        puts "Inserting Data to table receipts_revenues: ...................................................."
+        puts "Inserting Data to table 'receipts_revenues': ./................................................"
+
+        ActiveRecord::Base.connection
+          .execute(SqlFormatter.query_for_ilearn_student_info(parser, ilearn_districts_id))
+        puts "Inserting Data to table 'ilearn_student_info': ................................................"
+
+
+
+
+
       #
       #   daily_attendance_evg      = info[31].text
       #   statewide_ada             = info[33].text

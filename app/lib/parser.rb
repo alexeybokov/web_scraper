@@ -32,7 +32,7 @@ class Parser
   end
 
   def scrape_dev
-    format_value('alexey')
+    format_value('cryptex')
   end
 
   def state_amount
@@ -49,6 +49,46 @@ class Parser
   
   def total_amount
     format_value receipts_info(13)
+  end
+
+  def daily_attendance_evg
+    format_value student_info(39)
+  end
+
+  def statewide_ada
+    format_value student_info(41)
+  end
+
+  def net_operating
+    format_value student_info(43)
+  end
+
+  def operating_expance
+    format_value student_info(45)
+  end
+
+  def statewide_oepp_rank
+    format_value student_info(47)
+  end
+
+  def statewide_oepp
+    format_value student_info(49)
+  end
+
+  def allowance_for_tuition
+    format_value student_info(51)
+  end
+
+  def per_capita_tuition_charge
+    format_value student_info(53)
+  end
+
+  def statewide_pctc_rank
+    format_value student_info(55)
+  end
+
+  def statewide_pctc
+    format_value student_info(57)
   end
 
   private
@@ -73,6 +113,10 @@ class Parser
 
   def additional_info(index)
     district_page.search('.col-md-offset-4 p')[index].text[/:.{1,}$/].delete_prefix(': ')
+  end
+
+  def student_info(index)
+    district_page.search('td')[index].text[/(\d+.*)/]&.delete(',')&.to_i
   end
 
   attr_reader :district_page

@@ -1,5 +1,4 @@
 require 'active_record_migrations'
-require_relative 'web_scraper.rb'
 require 'mechanize'
 require 'byebug'
 
